@@ -1,6 +1,7 @@
 module EPD::Panels
   class Panel_7in5B_HD < Base
     def power_on
+      puts "Powering on..."
       # hardware/software reset
       reset
       send_command(0x12) # Reset device parameters to default
@@ -40,9 +41,11 @@ module EPD::Panels
       send_data([0x00, 0x00])
       send_command(0x4f)
       send_data([0xaf, 0x02])
+      puts "Powered on"
     end
 
     def show_image_buffer(black_image, red_image)
+      p "Trying to show image..."
       # Re-initialize the RAM address
       send_command(0x4e)
       send_data([0x00, 0x00])
@@ -61,11 +64,14 @@ module EPD::Panels
       send_command(0x20) # Execute sequence
       sleep(0.2)
       wait_for_panel
+      p "Image shown"
     end
 
     def power_off
+      p "Powering down..."
       send_command(0x10)
       send_data([0x01])
+      p "Powered down"
     end
   end
 end

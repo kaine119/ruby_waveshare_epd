@@ -102,7 +102,9 @@ module EPD::Panels
 
     # Wait for the Panel to turn off the BUSY flag.
     def wait_for_panel
+      puts "Waiting for panel..."
       RPi::GPIO.wait_for_edge(@busy, :falling)
+      puts "Panel is done!"
     end
 
     # Hardware-reset the panel by sending a pulse down the RST pin.
