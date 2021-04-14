@@ -1,5 +1,5 @@
 module EPD::Panels
-  class Panel_7in5B_HD < PanelBase
+  class Panel_7in5B_HD < Base
     def power_on
       # hardware/software reset
       reset
