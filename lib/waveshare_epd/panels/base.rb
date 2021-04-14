@@ -52,9 +52,9 @@ module EPD::Panels
           elsif pixel.all?(0x00)
             black_image_chunk |= 0 << index_to_write
             red_image_chunk |= 0 << index_to_write
-          # any other color will be interpreted as red; write a 0 on the black image and a 1 on the red image
+          # any other color will be interpreted as red; write a 1 on the black image and the red image
           else
-            black_image_chunk |= 0 << index_to_write
+            black_image_chunk |= 1 << index_to_write
             red_image_chunk |= 1 << index_to_write
           end
         end
