@@ -83,7 +83,7 @@ module EPD::Panels
       RPi::GPIO.set_low @cs
       RPi::GPIO.set_low @dc
       # Now send the command over the SPI line
-      SPI.xfer([command])
+      @spi.xfer(txdata: [command])
       # We're done, turn off CS
       RPi::GPIO.set_high @cs
     end
@@ -95,7 +95,7 @@ module EPD::Panels
       RPi::GPIO.set_low @cs
       RPi::GPIO.set_high @dc
       # Now send the command over the SPI line
-      SPI.xfer([command])
+      @spi.xfer(txdata: data)
       # We're done, turn off CS
       RPi::GPIO.set_high @cs
     end

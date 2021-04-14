@@ -6,8 +6,8 @@ require 'waveshare_epd/panels'
 module EPD
   # Maps symbols to the relevant panel classes.
   PANEL_MODELS = {
-    waveshare_2in7b_v2: EPD::Panels::Panel2in7B_V2,
-    waveshare_7in5b_hd: EPD::Panels::Panel7in5B_HD
+    waveshare_2in7b_v2: EPD::Panels::Panel_2in7B_V2,
+    waveshare_7in5b_hd: EPD::Panels::Panel_7in5B_HD
   }
 
   # Initializes a panel, and returns a Panel object.

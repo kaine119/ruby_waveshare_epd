@@ -1,4 +1,5 @@
 require 'waveshare_epd'
+require 'rmagick'
 
 image = Magick::Image.read('test.png').first.export_pixels_to_str
 
