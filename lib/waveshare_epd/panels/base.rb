@@ -58,7 +58,10 @@ module EPD::Panels
             red_image_chunk |= 0 << index_to_write
           end
         end
+        black_image << black_image_chunk
+        red_image << red_image_chunk
       end
+      p "Shoving #{black_image.length} bytes down the pipe"
       show_image_buffer(black_image, red_image)
     end
 
