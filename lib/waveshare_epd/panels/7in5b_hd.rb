@@ -54,9 +54,13 @@ module EPD::Panels
 
       # Send over the images
       send_command(0x24) # Write to BW RAM
-      send_data(black_image)        
+      black_image.each_with_slice(4096) do |block|
+        send_data(block)
+      end
       send_command(0x26) # Write to RED RAM
-      send_data(red_image)
+      red_image.each_with_slice(4096) do |block|
+        send_data(block)
+      end
 
       # Display the image
       send_command(0x22) # Load sequence C7 (display)
