@@ -44,18 +44,18 @@ module EPD::Panels
         chunk.each_with_index do |pixel, i|
           # Write from left to right.
           index_to_write = 7 - i
-          # if the pixel is white, write a 1 on both the red and black image chunk
+          # if the pixel is white, write a 1 on the black image, and a 0 on the red image
           if pixel.all?(0xff)
             black_image_chunk |= 1 << index_to_write
-            red_image_chunk |= 1 << index_to_write
-          # if the pixel is black, write a 0 on the black image, and a 1 on the red image
+            red_image_chunk |= 0 << index_to_write
+          # if the pixel is black, write a 0 on the black image and the red image
           elsif pixel.all?(0x00)
             black_image_chunk |= 0 << index_to_write
-            red_image_chunk |= 1 << index_to_write
-          # any other color will be interpreted as red; write a 1 on the black image and a 0 on the red image
-          else
-            black_image_chunk |= 1 << index_to_write
             red_image_chunk |= 0 << index_to_write
+          # any other color will be interpreted as red; write a 0 on the black image and a 1 on the red image
+          else
+            black_image_chunk |= 0 << index_to_write
+            red_image_chunk |= 1 << index_to_write
           end
         end
         black_image << black_image_chunk
