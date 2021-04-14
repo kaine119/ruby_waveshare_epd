@@ -1,5 +1,7 @@
 require 'rpi_gpio'
 require 'spi'
+require 'waveshare_epd/version'
+require 'waveshare_epd/panels'
 
 module EPD
   # Maps symbols to the relevant panel classes.
