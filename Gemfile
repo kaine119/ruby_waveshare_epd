@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
 gem 'spi'
-gem 'pi_piper'
+gem 'rpi_gpio'
 gem 'rmagick'
