@@ -7,6 +7,10 @@ module EPD::Panels
       send_command(0x12) # Reset device parameters to default
       wait_for_panel
 
+      # Some kind of power setting? idk
+      send_command(0x0C);  # Soft start setting
+      send_data([0xAE, 0xC7, 0xC3, 0xC0, 0x40]);
+
       # Driver output control
       send_command(0x01)
       send_data([0xaf, 0x02, 0x01]) # 0x2af gates, write backwards
@@ -23,7 +27,7 @@ module EPD::Panels
 
       # Border waveform control? Let's try the default first
       send_command(0x3C)
-      send_data([0xc0])
+      send_data([0x01])
 
       # Use an appropriate LUT depending on the temperature.
       ## Select internal temp gauge
@@ -54,11 +58,11 @@ module EPD::Panels
 
       # Send over the images
       send_command(0x24) # Write to BW RAM
-      black_image.each_with_slice(4096) do |block|
+      black_image.each_slice(2048) do |block|
         send_data(block)
       end
       send_command(0x26) # Write to RED RAM
-      red_image.each_with_slice(4096) do |block|
+      red_image.each_slice(2048) do |block|
         send_data(block)
       end
 
