@@ -1,6 +1,6 @@
 require 'rpi_gpio'
 
-module EPD::Panel
+module EPD::Panels
   class Base
     # Creates a Panel object. Use EPD.start for the panel instead.
     # 
